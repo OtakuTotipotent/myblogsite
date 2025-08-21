@@ -1,88 +1,30 @@
-<html lang="en">
-
-<head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>My Blog Site | Blogs</title>
- <style>
-  body {
-   background-color: #585757;
-   color: rgba(255, 255, 255, 0.7);
-   font-family: 'verdana';
-  }
-
-  h1 {
-   color: black;
-   text-transform: uppercase;
-   font-size: 2.5rem;
-  }
-
-  .posts {
-   display: flex;
-   flex-direction: column;
-   gap: 1rem;
-   list-style: none;
-  }
-
-  li {
-   padding: 1rem;
-   border-radius: 14px;
-   background-color: rgba(0, 0, 0, 0.2);
-   box-shadow: 0px 0 2px black;
-   list-style: none;
-   transition: .2s linear;
-  }
-
-  li:hover {
-   background-color: rgba(0, 0, 0, 0.3);
-   box-shadow: 0px 0 2px black;
-  }
-
-  i {
-   color: grey;
-  }
-
-  b {
-   text-decoration: underline;
-   text-underline-offset: 3px;
-  }
-
-  p {
-   text-align: justify;
-  }
-
-  a {
-   color: black;
-   text-underline-offset: 2px;
-   display: inline-block;
-   width: fit-content;
-   transition: .2s linear;
-  }
-
-  a:hover {
-   color: white;
-  }
- </style>
-</head>
-
-<body>
- <h1>P<i>o</i>st<i>s</i></h1>
- <ul class="posts">
-
-  <a href=" {% url 'create_post' %} ">Make new <i>post</i></a>
-
-  {% for post in posts %}
-  <li>
-   <b> {{post.title}} </b> - <i> {{post.created_at}} </i>
-   <p> {{post.content}} </p>
-   <a href="{% url 'edit_post' post.pk %}">Edit</a> |
-   <a href="{% url 'delete_post' post.pk %}">Delete</a>
-  </li>
-  {% endfor %}
-
- </ul>
+{% extends 'blog/base.html' %}
 
 
-</body>
+{% block title %}
 
-</html>
+My Blog Site | Home
+
+{% endblock title %}
+
+
+
+{% block content %}
+
+<h1>P<i>o</i>st<i>s</i></h1>
+<ul class="posts">
+
+ <a href=" {% url 'create_post' %} ">Make new <i>post</i></a>
+
+ {% for post in posts %}
+ <li>
+  <b> {{post.title}} </b> - <i> {{post.created_at}} </i>
+  <p> {{post.content}} </p>
+  <a href="{% url 'edit_post' post.pk %}">Edit</a> |
+  <a href="{% url 'delete_post' post.pk %}">Delete</a>
+ </li>
+ {% endfor %}
+
+</ul>
+
+{% endblock content %}
