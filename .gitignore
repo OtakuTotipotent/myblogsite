@@ -1,3 +1,43 @@
-.env/
-__pyche__/
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Django
+db.sqlite3
+*.log
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+# VSCode settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+*.swp
+
+# Node modules (if any frontend code)
+node_modules/
+
+# Test coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# Static files (if generated)
 staticfiles/
+
+# Media files (if generated)
+media/
+
+# Other
+*.bak
+*.tmp
