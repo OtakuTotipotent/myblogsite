@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+My Blog Site | New Student
+{% endblock title %}
+
+
+{% block content %}
+
+<h1>
+ A<i>dd</i> N<i>ew</i> S<i>tudent</i>
+</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+ {% csrf_token %}
+
+ {{form.as_p}}
+
+ <button type="submit">Save Student</button>
+
+</form>
+
+{% endblock content %}

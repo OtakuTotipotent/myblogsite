@@ -1,4 +1,13 @@
 {
  "editor.tabSize": 1,
- "commit-message-editor.view.tabSize": 2
+ "commit-message-editor.view.tabSize": 2,
+ "cSpell.words": [
+  "myblogsite",
+  "tuden",
+  "tudent"
+ ],
+ "editor.fontFamily": "Cascadia Code",
+ "terminal.integrated.fontFamily": "",
+ "terminal.integrated.fontSize": 14,
+ "terminal.integrated.lineHeight": 1.1
 }

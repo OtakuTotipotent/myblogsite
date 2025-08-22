@@ -16,7 +16,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
+from django.urls import include, path
 from blog import views
 
 urlpatterns = [
@@ -25,4 +27,8 @@ urlpatterns = [
     path("new/", views.create_post, name="create_post"),
     path("edit/<int:pk>/", views.edit_post, name="edit_post"),
     path("delete/<int:pk>/", views.delete_post, name="delete_post"),
+    path("students/", include("students.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
