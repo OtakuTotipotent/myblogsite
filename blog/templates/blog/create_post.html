@@ -10,15 +10,15 @@ My Blog Site | Create Post
 
 {% block content %}
 
-<h1>N<i>ew</i> P<i>ost</i></h1>
+<h1 class="page-heading">N<i>ew</i> P<i>ost</i></h1>
 
 <form method="POST">
  {% csrf_token %}
  {{ form.as_p }}
 
- <button type="submit">POST</button>
+ <button class="btn-primary" type="submit">POST</button>
 </form>
 
-<a href=" {% url 'home' %} ">Back to <i>HOME</i></a>
+<a class="btn-primary" href=" {% url 'home' %} ">Back to <i>HOME</i></a>
 
 {% endblock content %}

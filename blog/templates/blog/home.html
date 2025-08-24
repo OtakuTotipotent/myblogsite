@@ -11,18 +11,30 @@ My Blog Site | Posts
 
 {% block content %}
 
-<h1>P<i>o</i>st<i>s</i></h1>
-<ul class="posts-list">
+<h1 class="page-heading">P<i>o</i>st<i>s</i></h1>
 
- <a href=" {% url 'create_post' %} ">Make new <i>post</i></a>
+<a class="btn-primary" href=" {% url 'create_post' %} ">Make new post</a>
+
+<ul>
 
  {% for post in posts %}
- <li>
-  <b> {{post.title}} </b> - <i> {{post.created_at}} </i>
+
+ <li class="list-item">
+
+  <div class="ul-header">
+   <div class="ul-heading">
+    <b> {{post.title}} </b> <i> ({{post.created_at}}) </i>
+   </div>
+   <div class="ul-btns">
+    <a class="btn-primary" href="{% url 'edit_post' post.pk %}">Edit</a>
+    <a class="btn-primary" href="{% url 'delete_post' post.pk %}">Delete</a>
+   </div>
+  </div>
+
   <p> {{post.content}} </p>
-  <a href="{% url 'edit_post' post.pk %}">Edit</a> |
-  <a href="{% url 'delete_post' post.pk %}">Delete</a>
+
  </li>
+
  {% endfor %}
 
 </ul>

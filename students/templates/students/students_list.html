@@ -7,34 +7,29 @@ My Blog Site | Students
 
 {% block content %}
 
-<h1>
- <i>S</i>tuden<i>ts</i> L<i>is</i>t
-</h1>
+<h1 class="page-heading"><i>S</i>tuden<i>ts</i> L<i>is</i>t</h1>
 
-<a href="{% url 'student_create' %}">Add Student</a>
+<a class="btn-primary" href="{% url 'student_create' %}">Add Student</a>
 
-<ul class="students-list">
+<ul>
 
  {% for student in students %}
- <li>
+
+ <li class="list-item">
 
   {% if student.profile_pic %}
-  <img src="{{ student.profile_pic.url }}" alt="{{ student.name }} 🖼️"
-   style="width:50px;height:50px;border-radius:50%;">
+  <img class="profile-img" src="{{ student.profile_pic.url }}" alt="{{ student.name }} 🖼️">
   {% endif %}
 
-  <div class="data-container">
-
-   <b>
-    {{ student.name }}
-   </b>
-   ( {{ student.email }} ) <br>
-
-   <small>
-    {{ student.bio }}
-   </small>
-
+  <div class="ul-header">
+   <div class="ul-heading">
+    <b> {{ student.name }} </b> <i> ({{ student.email }}) </i>
+   </div>
+   <div class="ul-btns">
+   </div>
   </div>
+
+  <p> {{ student.bio }} </p>
 
  </li>
  {% endfor %}
