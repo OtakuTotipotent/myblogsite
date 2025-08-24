@@ -17,7 +17,7 @@ My Blog Site | Delete
  {% csrf_token %}
  <p class="item-details">Post Title: <b>{{ post.title }}</b></p>
  <p class="confirmation">Are you sure you want to delete this post?</p>
- <button class="btn-primary" type="submit">Confirm Delete</button>
+ <button class="btn-primary btn-delete" type="submit">Confirm Delete</button>
 </form>
 
 <a class="btn-primary" href="{% url 'home' %}">Cancel</a>

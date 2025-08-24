@@ -1,301 +1,310 @@
 <html lang="en">
 
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title> {% block title %} MyBlogSite {% endblock %} </title>
- <style>
-  * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> {% block title %} MyBlogSite {% endblock %} </title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-   display: flex;
-   flex-direction: column;
-   padding: 0 10px;
-   min-height: 100vh;
-   position: relative;
-   font-family: 'verdana';
-   color: white;
-   background: radial-gradient(circle, #788a7c, #416996, #5b3c77, #132357);
-   background-size: 500% 500%;
-   animation: gradient 45s ease infinite;
-  }
+    body {
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px;
+      min-height: 100vh;
+      position: relative;
+      font-family: 'verdana';
+      color: white;
+      background: radial-gradient(circle, #788a7c, #416996, #5b3c77, #132357);
+      background-size: 500% 500%;
+      animation: gradient 45s ease infinite alternate;
+    }
 
-  .container {
-   margin: 1rem 0 4rem;
-  }
+    .container {
+      margin: 1rem 0 4rem;
+    }
 
-  @keyframes gradient {
-   0% {
-    background-position: 0% 0%;
-   }
+    @keyframes gradient {
+      0% {
+        background-position: 0% 0%;
+      }
 
-   100% {
-    background-position: 100% 100%;
-   }
-  }
+      100% {
+        background-position: 100% 100%;
+      }
+    }
 
-  ::-webkit-scrollbar {
-   width: 0;
-  }
+    ::-webkit-scrollbar {
+      width: 0;
+    }
 
-  ::selection {
-   color: #4cf09e;
-   background-color: white;
-  }
+    ::selection {
+      color: gray;
+      background-color: #4cf09e;
+    }
 
-  nav {
-   position: sticky;
-   top: 0;
-   display: flex;
-   gap: 1.5rem;
-   padding: 12px 32px;
-   border-radius: 0 0 14px 14px;
-   backdrop-filter: blur(7px);
-   background-color: rgba(255, 255, 255, 0.3);
-   z-index: 10;
-  }
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      gap: 1.5rem;
+      padding: 12px 32px;
+      border-radius: 0 0 14px 14px;
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.3);
+      z-index: 10;
+    }
 
-  footer {
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   padding: 10px;
-   margin-top: 2rem;
-   font-size: .7rem;
-   text-align: center;
-   border-radius: 14px 14px 0 0;
-   backdrop-filter: blur(10px);
-   color: rgba(0, 0, 0, 0.5);
-   background-color: rgba(255, 255, 255, 0.3);
-  }
+    footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      margin-top: 2rem;
+      font-size: .7rem;
+      text-align: center;
+      border-radius: 14px 14px 0 0;
+      backdrop-filter: blur(10px);
+      color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(255, 255, 255, 0.3);
+    }
 
-  footer .page-links {
-   font-size: smaller;
-  }
+    footer .page-links {
+      font-size: smaller;
+    }
 
-  .page-heading {
-   margin: 1rem 0;
-   font-size: 2.5rem;
-   text-align: center;
-   text-transform: uppercase;
-   letter-spacing: 2px;
-   cursor: default;
-  }
+    .page-heading {
+      margin: 1rem 0;
+      font-size: 2rem;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: default;
+    }
 
-  .page-heading i {
-   text-shadow: 1px 1px 4px #4cf09e;
-   text-decoration: line-through;
-  }
+    .page-heading i {
+      text-shadow: 1px 1px 4px #4cf09e;
+    }
 
-  .page-links {
-   font-size: .9rem;
-   text-decoration: none;
-   transition: .2s linear;
-   position: relative;
-   background: linear-gradient(90deg, white, #4cf09e);
-   -webkit-background-clip: text;
-   background-clip: text;
-   color: transparent;
-  }
+    .page-links {
+      font-size: .9rem;
+      text-decoration: none;
+      transition: .2s linear;
+      position: relative;
+      background: linear-gradient(90deg, white, #4cf09e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-  .page-links::before {
-   content: "";
-   display: block;
-   position: absolute;
-   left: 0;
-   bottom: -2px;
-   width: 100%;
-   height: 2px;
-   border-radius: 50%;
-   background-color: white;
-   transform: scaleX(0);
-   transition: transform 0.3s ease-in-out;
-  }
+    .page-links::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      border-radius: 50%;
+      background-color: white;
+      transform: scaleX(0);
+      transition: transform 0.3s ease-in-out;
+    }
 
-  .page-links:hover::before {
-   transform: scaleX(1);
-  }
+    .page-links:hover::before {
+      transform: scaleX(1);
+    }
 
-  .btn-primary {
-   padding: 5px 10px;
-   cursor: pointer;
-   border-radius: 5px;
-   font-size: .8rem;
-   transition: .2s;
-   text-decoration: none;
-   border: 1px solid #4cf09e;
-   color: white;
-   opacity: 0.6;
-  }
+    .btn-primary {
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: .8rem;
+      transition: .2s;
+      text-decoration: none;
+      border: 1px solid #4cf09e;
+      color: white;
+      opacity: 0.6;
+    }
 
-  .btn-primary:hover {
-   opacity: 1;
-   color: #4cf09e;
-  }
+    .btn-primary:hover {
+      opacity: 1;
+      color: #4cf09e;
+    }
 
-  ul {
-   list-style: none;
-   gap: .6rem;
-   display: flex;
-   flex-wrap: wrap;
-   margin-top: 1.5rem;
-   justify-content: space-evenly;
-  }
+    ul {
+      list-style: none;
+      gap: .6rem;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      justify-content: space-evenly;
+    }
 
-  .ul-header {
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   flex-wrap: wrap;
-   gap: 10px;
-  }
+    .ul-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-  .ul-header b {
-   background: linear-gradient(90deg, white, #4cf09e);
-   -webkit-background-clip: text;
-   background-clip: text;
-   color: transparent;
-  }
+    .ul-heading {
+      margin: 0.6rem 0 0;
+    }
 
-  .ul-heading i {
-   color: #b6b6b6;
-   font-size: smaller;
-  }
+    .ul-heading b {
+      background: linear-gradient(90deg, white, #4cf09e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-  .ul-header .btn-primary {
-   padding: 2px 5px;
-  }
+    .ul-heading i {
+      color: #b6b6b6;
+      font-size: smaller;
+    }
 
-  .list-item {
-   width: 100%;
-   max-width: 49%;
-   overflow: auto;
-   padding: 1rem;
-   display: flex;
-   flex-direction: column;
-   list-style: none;
-   border-radius: 16px;
-   transition: background-color .2s linear;
-   background-color: rgba(0, 0, 0, 0.2);
-   backdrop-filter: blur(10px);
-  }
+    .ul-header .btn-primary {
+      padding: 2px 5px;
+    }
 
-  .list-item:hover {
-   box-shadow: 0px 0px 2px white;
-   background-color: transparent;
-  }
+    .list-item {
+      width: 100%;
+      max-width: 49%;
+      overflow: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      border-radius: 16px;
+      transition: background-color .2s linear;
+      background-color: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+    }
 
-  .list-item p {
-   margin: .7rem 0;
-   font-size: .9rem;
-  }
+    .list-item:hover {
+      box-shadow: 0px 0px 2px white;
+      background-color: transparent;
+    }
 
-  form {
-   max-width: 600px;
-   display: flex;
-   gap: 1rem;
-   flex-direction: column;
-   padding: 1rem;
-   margin: 3rem auto;
-   border-radius: 15px;
-   box-shadow: 0px 0px 2px white;
-  }
+    .list-item p {
+      margin: .7rem 0;
+      font-size: .9rem;
+    }
 
-  input,
-  textarea {
-   width: 100%;
-   padding: 4px 8px;
-   margin-top: 8px;
-   outline: none;
-   font-size: 1rem;
-   border-radius: 6px 6px 0 0;
-   border: 2px solid transparent;
-   color: #4cf09e;
-   background-color: rgba(255, 255, 255, 0.1);
-   transition: border-color .4s linear;
-  }
+    form {
+      max-width: 600px;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+      padding: 1rem;
+      margin: 3rem auto;
+      border-radius: 15px;
+      box-shadow: 0px 0px 2px white;
+      overflow: hidden;
+    }
 
-  input:focus,
-  textarea:focus {
-   border-bottom-color: #4cf09e;
-  }
+    input,
+    textarea {
+      width: 100%;
+      padding: 4px 8px;
+      margin-top: 8px;
+      outline: none;
+      font-size: 1rem;
+      border-radius: 6px 6px 0 0;
+      border: 2px solid transparent;
+      color: #4cf09e;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: border-color .4s linear;
+    }
 
-  textarea {
-   resize: none;
-   max-height: 150px;
-  }
+    input:focus,
+    textarea:focus {
+      border-bottom-color: #4cf09e;
+    }
 
-  label {
-   font-size: 1.1rem;
-   background: linear-gradient(90deg, white, #4cf09e);
-   -webkit-background-clip: text;
-   background-clip: text;
-   color: transparent;
-  }
+    textarea {
+      resize: none;
+      max-height: 150px;
+    }
 
-  form .btn-primary {
-   align-self: center;
-   padding: 5px 64px 3px;
-   background-color: transparent;
-   color: hotpink;
-   border-color: hotpink;
-   opacity: 1;
-   margin-top: 1rem;
+    label {
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, white, #4cf09e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-   &:hover {
-    color: white;
-    background-color: rgba(255, 0, 0, 0.2);
-   }
-  }
+    form .btn-primary {
+      align-self: center;
+      padding: 5px 64px 3px;
+      background-color: transparent;
+    }
 
-  .item-details {
-   width: fit-content;
-   color: transparent;
-   background: linear-gradient(90deg, white, #4cf09e);
-   -webkit-background-clip: text;
-   background-clip: text;
-  }
+    .btn-delete {
+      align-self: center;
+      padding: 5px 64px 3px;
+      background-color: transparent;
+      color: hotpink;
+      border-color: hotpink;
+      opacity: 1;
+      margin-top: 1rem;
 
-  .confirmation {
-   color: hotpink;
-  }
+      &:hover {
+        color: white;
+        background-color: rgba(255, 0, 0, 0.2);
+      }
+    }
 
-  .profile-img {
-   width: 50px;
-   height: 50px;
-   border-radius: 50%;
-   margin-bottom: 0.7rem;
-  }
+    .item-details {
+      width: fit-content;
+      color: transparent;
+      background: linear-gradient(90deg, white, #4cf09e);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
 
-  @media (max-width: 600px) {
-   .list-item {
-    max-width: 100%;
-   }
-  }
- </style>
+    .confirmation {
+      color: hotpink;
+    }
+
+    .profile-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    @media (max-width: 600px) {
+      .list-item {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body class="dark">
 
- <nav>
-  <a class="page-links" href="{% url 'home' %}"> Home </a>
-  <a class="page-links" href="{% url 'students_list' %}"> Students </a>
- </nav>
+  <nav>
+    <a class="page-links" href="{% url 'home' %}"> Home </a>
+    <a class="page-links" href="{% url 'students_list' %}"> Students </a>
+  </nav>
 
- <div class="container">
-  {% block content %}
-  {% endblock content %}
- </div>
+  <div class="container">
+    {% block content %}
+    {% endblock content %}
+  </div>
 
- <footer>
-  2025 &copy; <a href="{% url 'home' %}" class="page-links">MyBlogSite</a>. All rights reserved. Made with 💚 by <a
-   class="page-links" href="https://github.com/OtakuTotipotent">Afnan Muhammad</a>
- </footer>
+  <footer>
+    2025 &copy; <a href="{% url 'home' %}" class="page-links">MyBlogSite</a>. All rights reserved. Made with 💚 by <a
+      class="page-links" href="https://github.com/OtakuTotipotent">Afnan Muhammad</a>
+  </footer>
 
 </body>
 

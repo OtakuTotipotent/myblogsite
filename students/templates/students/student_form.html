@@ -7,8 +7,12 @@ My Blog Site | New Student
 
 {% block content %}
 
-<h1>
+<h1 class="page-heading">
+ {% if edit_mode %}
+ <i>Edit</i> Stud<i>ent</i>
+ {% else %}
  A<i>dd</i> N<i>ew</i> S<i>tudent</i>
+ {% endif %}
 </h1>
 
 <form method="POST" enctype="multipart/form-data">
@@ -17,8 +21,12 @@ My Blog Site | New Student
 
  {{form.as_p}}
 
- <button class="btn-primary" type="submit">Save Student</button>
+ <button class="btn-primary" type="submit">
+  {% if edit_mode %} Update {% else %} Create {% endif %} Student
+ </button>
 
 </form>
+
+<a class="btn-primary" href=" {% url 'students_list' %} ">Back to <i>HOME</i></a>
 
 {% endblock content %}

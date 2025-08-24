@@ -17,16 +17,18 @@ My Blog Site | Students
 
  <li class="list-item">
 
-  {% if student.profile_pic %}
-  <img class="profile-img" src="{{ student.profile_pic.url }}" alt="{{ student.name }} 🖼️">
-  {% endif %}
-
   <div class="ul-header">
-   <div class="ul-heading">
-    <b> {{ student.name }} </b> <i> ({{ student.email }}) </i>
-   </div>
+   {% if student.profile_pic %}
+   <img class="profile-img" src="{{ student.profile_pic.url }}" alt="{{ student.name }} 🖼️">
+   {% endif %}
    <div class="ul-btns">
+    <a class="btn-primary" href="{% url 'student_edit' student.id %}">Edit</a>
+    <a class="btn-primary" href="{% url 'student_delete' student.id %}">Delete</a>
    </div>
+  </div>
+
+  <div class="ul-heading">
+   <b> {{ student.name }} </b> <i> ({{ student.email }}) </i>
   </div>
 
   <p> {{ student.bio }} </p>
