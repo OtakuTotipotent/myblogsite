@@ -1,3 +1,4 @@
+import os
 from django.db import models
 
 
@@ -10,3 +11,9 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+    def delete(self, *args, **kwargs):
+        if self.profile_pic:
+            if os.path.isfile(self.profile_pic.path):
+                os.remove(self.profile_pic.path)
+        super().delete(*args, **kwargs)

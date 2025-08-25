@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+
+<h1 class="page-heading">Del<i>ete</i> Pro<i>file</i></h1>
+
+<form method="POST">
+ {% csrf_token %}
+ <p class="item-details">Name: <b>{{ student.name }}</b></p>
+ <p class="confirmation">Are you sure you want to delete this post?</p>
+ <button class="btn-primary btn-delete" type="submit">Confirm Delete</button>
+</form>
+
+<a class="btn-primary" href="{% url 'students_list' %}">Cancel</a>
+
+{% endblock content %}

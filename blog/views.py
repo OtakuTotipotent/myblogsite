@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
 from .forms import PostForm
+# from django.db.models import Q
 
 # Create your views here.
 
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-id')
     return render(request, "blog/home.html", {"posts": posts})
 
 

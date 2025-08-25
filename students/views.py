@@ -6,8 +6,15 @@ from .models import Student
 
 
 def students_list(request):
-    students = Student.objects.all()
-    return render(request, "students/students_list.html", {"students": students})
+    query = request.GET.get("q")
+    students = Student.objects.all().order_by("-id")
+    if query:
+        students = students.filter(name__icontains=query) | students.filter(
+            email__icontains=query
+        )
+    return render(
+        request, "students/students_list.html", {"students": students, "query": query}
+    )
 
 
 def student_create(request):
@@ -31,6 +38,10 @@ def student_edit(request, pk):
         if form.is_valid():
             form.save()
             return redirect("students_list")
+        else:
+            return render(
+                request, "students/student_form.html", {"form": form, "edit_mode": True}
+            )
     else:
         form = StudentForm(instance=student)
         return render(
