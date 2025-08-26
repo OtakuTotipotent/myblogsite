@@ -1,6 +1,6 @@
 {
  "editor.tabSize": 1,
- "commit-message-editor.view.tabSize": 2,
+ "commit-message-editor.view.tabSize": 1,
  "cSpell.words": [
   "myblogsite",
   "tuden",

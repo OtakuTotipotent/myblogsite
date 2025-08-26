@@ -1,14 +1,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post
-from .forms import PostForm
-# from django.db.models import Q
-
-# Create your views here.
+from .forms import PostForm, PostSearchForm
 
 
+# home = index = post_list
 def home(request):
-    posts = Post.objects.all().order_by('-id')
-    return render(request, "blog/home.html", {"posts": posts})
+    posts = Post.objects.all().order_by("-created_at")
+    form = PostSearchForm(request.GET or None)
+    if form.is_valid():
+        title = form.cleaned_data.get("title")
+        start_date = form.cleaned_data.get("start_date")
+        end_date = form.cleaned_data.get("end_date")
+        if title:
+            posts = posts.filter(title__icontains=title)
+        if start_date:
+            posts = posts.filter(created_at__date__gte=start_date)
+        if end_date:
+            posts = posts.filter(created_at__date__lte=end_date)
+    return render(request, "blog/home.html", {"posts": posts, "form": form})
 
 
 def create_post(request):

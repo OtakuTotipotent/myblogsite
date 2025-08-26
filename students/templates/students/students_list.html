@@ -10,8 +10,11 @@ My Blog Site | Students
 <h1 class="page-heading"><i>S</i>tuden<i>ts</i> L<i>is</i>t</h1>
 
 <form method="GET">
- <input type="text" name="q" value="{{ query }}" placeholder="Search by name or email">
- <button type="submit" class="btn-primary">Search</button>
+ <input type="text" name="q" value="{% if query %}{{ query }}{% endif %}" placeholder="Search by name or email">
+ <div class="data-search-section">
+  <button type="submit" class="btn-primary">Search</button>
+  <a href="{% url 'students_list' %}" class="btn-primary">Clear</a>
+ </div>
 </form>
 
 <a class="btn-primary" href="{% url 'student_create' %}">Add Student</a>

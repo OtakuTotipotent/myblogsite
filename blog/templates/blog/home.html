@@ -13,6 +13,14 @@ My Blog Site | Posts
 
 <h1 class="page-heading">P<i>o</i>st<i>s</i></h1>
 
+<form method="GET">
+ {{ form.as_p }}
+ <div class="data-search-section">
+  <button type="submit" class="btn-primary">Search</button>
+  <a href="{% url 'home' %}" class="btn-primary">Clear</a>
+ </div>
+</form>
+
 <a class="btn-primary" href=" {% url 'create_post' %} ">Make new post</a>
 
 <ul>
@@ -20,20 +28,20 @@ My Blog Site | Posts
  {% for post in posts %}
 
  <li class="list-item">
-
   <div class="ul-header">
    <div class="ul-heading">
-    <b> {{post.title}} </b> <i> ({{post.created_at}}) </i>
+    <b> {{post.title}} </b> <i> ({{post.created_at|date:"Y-m-d"}}) </i>
    </div>
    <div class="ul-btns">
     <a class="btn-primary" href="{% url 'edit_post' post.pk %}">Edit</a>
     <a class="btn-primary" href="{% url 'delete_post' post.pk %}">Delete</a>
    </div>
   </div>
-
   <p> {{post.content}} </p>
-
  </li>
+
+ {% empty %}
+ <li>No posts found.</li>
 
  {% endfor %}
 

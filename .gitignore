@@ -1,20 +1,17 @@
 # Python
-__pycache__/
-*.py[cod]
-*.pyo
+/__pycache__/
+*.pyc
 
 # Django
 db.sqlite3
 *.log
 
 # Virtual environments
-env/
-venv/
-ENV/
-.venv/
+/env
+/venv
 
 # VSCode settings
-.vscode/
+/.vscode
 
 # OS generated files
 .DS_Store

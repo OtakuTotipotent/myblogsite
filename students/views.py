@@ -7,7 +7,7 @@ from .models import Student
 
 def students_list(request):
     query = request.GET.get("q")
-    students = Student.objects.all().order_by("-id")
+    students = Student.objects.all().order_by("-created_at")
     if query:
         students = students.filter(name__icontains=query) | students.filter(
             email__icontains=query
