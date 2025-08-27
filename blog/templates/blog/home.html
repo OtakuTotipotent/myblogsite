@@ -30,7 +30,7 @@ My Blog Site | Posts
  <li class="list-item">
   <div class="ul-header">
    <div class="ul-heading">
-    <b> {{post.title}} </b> <i> ({{post.created_at|date:"Y-m-d"}}) </i>
+    <b> {{post.title}} </b> <i> ({{ post.created_at }}) </i>
    </div>
    <div class="ul-btns">
     <a class="btn-primary" href="{% url 'edit_post' post.pk %}">Edit</a>
