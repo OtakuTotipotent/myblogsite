@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+My Blog Site | Login
+{% endblock title %}
+
+
+{% block content %}
+
+<h2 class="page-heading">Log<i>In</i></h2>
+
+<form method="post">
+ {% csrf_token %}
+
+ <label for="email">Email</label>
+ <input type="email" name="email" required id="email" placeholder="Enter your email">
+
+ <label for="password">Password</label>
+ <input type="password" name="password" required id="password" placeholder="Enter your password">
+
+ <button type="submit" class="btn-primary">Log In</button>
+
+</form>
+
+{% endblock content %}

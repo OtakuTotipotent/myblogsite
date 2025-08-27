@@ -311,6 +311,14 @@
   <nav>
     <a class="page-links" href="{% url 'home' %}"> Home </a>
     <a class="page-links" href="{% url 'students_list' %}"> Students </a>
+
+    {% if user.is_authenticated %}
+    <span class="page-links">Welcome, {{ user.name }}</span>
+    <a href="{% url 'logout' %}" class="page-links">Logout</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="page-links">Login</a>
+    <a href="{% url 'signup' %}" class="page-links">signup</a>
+    {% endif %}
   </nav>
 
   <div class="container">
