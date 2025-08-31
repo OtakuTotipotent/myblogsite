@@ -20,7 +20,7 @@ def signup_view(request):
             name=name,
         )
         login(request, user)
-        return redirect(request, "home")
+        return redirect("home")
     return render(request, "accounts/signup.html")
 
 

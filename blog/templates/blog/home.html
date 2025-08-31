@@ -21,10 +21,11 @@ My Blog Site | Posts
  </div>
 </form>
 
+{% if user.is_authenticated %}
 <a class="btn-primary" href=" {% url 'create_post' %} ">Make new post</a>
+{% endif %}
 
 <ul>
-
  {% for post in posts %}
 
  <li class="list-item">
@@ -32,10 +33,14 @@ My Blog Site | Posts
    <div class="ul-heading">
     <b> {{post.title}} </b> <i> ({{ post.created_at }}) </i>
    </div>
+
+   {% if user == post.author %}
    <div class="ul-btns">
-    <a class="btn-primary" href="{% url 'edit_post' post.pk %}">Edit</a>
-    <a class="btn-primary" href="{% url 'delete_post' post.pk %}">Delete</a>
+    <a class="btn-primary" href="{% url 'edit_post' post.id %}">Edit</a>
+    <a class="btn-primary" href="{% url 'delete_post' post.id %}">Delete</a>
    </div>
+   {% endif %}
+
   </div>
   <p> {{post.content}} </p>
  </li>
@@ -44,7 +49,6 @@ My Blog Site | Posts
  <li>No posts found.</li>
 
  {% endfor %}
-
 </ul>
 
 {% endblock content %}

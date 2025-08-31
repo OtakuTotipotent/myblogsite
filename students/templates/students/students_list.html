@@ -17,33 +17,41 @@ My Blog Site | Students
  </div>
 </form>
 
+{% if user.is_authenticated %}
 <a class="btn-primary" href="{% url 'student_create' %}">Add Student</a>
+{% endif %}
 
 <ul>
-
  {% for student in students %}
-
  <li class="list-item">
 
   <div class="ul-header">
    {% if student.profile_pic %}
    <img class="profile-img" src="{{ student.profile_pic.url }}" alt="{{ student.name }} 🖼️">
    {% endif %}
+
+   {% if user == student.owner %}
    <div class="ul-btns">
     <a class="btn-primary" href="{% url 'student_edit' student.id %}">Edit</a>
     <a class="btn-primary" href="{% url 'student_delete' student.id %}">Delete</a>
    </div>
+   {% endif %}
   </div>
 
   <div class="ul-heading">
-   <b> {{ student.name }} </b> <i> ({{ student.email }}) </i>
+   <b> {{ student.name }} </b> <i>
+    {% if user.is_authenticated %}
+    ({{ student.email }})
+    {% else %}
+    (Login to see email address)
+    {% endif %}
+   </i>
   </div>
 
   <p> {{ student.bio }} </p>
 
  </li>
  {% endfor %}
-
 </ul>
 
 {% endblock content %}

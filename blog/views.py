@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from .forms import PostForm, PostSearchForm
 
@@ -20,10 +21,13 @@ def home(request):
     return render(request, "blog/home.html", {"posts": posts, "form": form})
 
 
+@login_required(login_url="login")
 def create_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
             form.save()
             return redirect("home")
     else:
@@ -32,8 +36,9 @@ def create_post(request):
     return render(request, "blog/create_post.html", {"form": form})
 
 
+@login_required(login_url="login")
 def edit_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk, author=request.user)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -44,8 +49,9 @@ def edit_post(request, pk):
     return render(request, "blog/edit_post.html", {"form": form})
 
 
+@login_required(login_url="login")
 def delete_post(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    post = get_object_or_404(Post, pk=pk, author=request.user)
     if request.method == "POST":
         post.delete()
         return redirect("home")

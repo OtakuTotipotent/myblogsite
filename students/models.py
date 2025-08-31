@@ -1,5 +1,6 @@
 import os
 from django.db import models
+from django.conf import settings
 
 
 def student_profile_upload(instance, filename):
@@ -17,6 +18,11 @@ class Student(models.Model):
         upload_to=student_profile_upload, blank=True, null=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="students",
+    )
 
     def __str__(self):
         return self.name
